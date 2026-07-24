@@ -48,20 +48,16 @@ function renderFilters() {
 }
 
 function paperCard(p) {
-  const abstract = splitAbstract(p.abstract);
-  return `<article class="paper-card">
-    <div class="card-meta">
-      <span class="tag sheet">${esc(p.sheet)}</span>
-      <span class="tag">${esc(p.venue)}</span>
-      <span class="tag">${esc(p.year)}</span>
-    </div>
-    <h3>${esc(p.titleEn)}</h3>
-    <p class="summary">${esc(abstract.zh || abstract.en)}</p>
-    <div class="card-actions">
-      <button class="btn primary" data-detail="${p.id}">查看详情</button>
-      ${p.pdfUrl ? `<a class="btn" href="${esc(p.pdfUrl)}" download>PDF</a>` : `<span class="btn disabled">暂无 PDF</span>`}
-    </div>
-  </article>`;
+  return `<button class="paper-row" data-detail="${p.id}" aria-label="查看 ${esc(p.titleEn)} 的详情">
+    <span class="paper-main">
+      <span class="paper-title">${esc(p.titleEn)}</span>
+      <span class="paper-subtitle">${esc(p.titleZh || p.relation || "暂无中文标题")}</span>
+    </span>
+    <span class="cell">${esc(p.sheet)}</span>
+    <span class="cell">${esc(p.venue)}</span>
+    <span class="cell mono">${esc(p.year)}</span>
+    <span class="status ${p.pdfUrl ? "available" : "unavailable"}">${p.pdfUrl ? "可下载" : "未公开"}</span>
+  </button>`;
 }
 
 function render() {
@@ -113,8 +109,8 @@ function bindEvents() {
   $("#yearFilter").addEventListener("change", e => { state.year = e.target.value; render(); });
   $("#pdfOnly").addEventListener("change", e => { state.pdfOnly = e.target.checked; render(); });
   $("#paperGrid").addEventListener("click", e => {
-    const button = e.target.closest("[data-detail]");
-    if (button) showDetail(button.dataset.detail);
+    const row = e.target.closest("[data-detail]");
+    if (row) showDetail(row.dataset.detail);
   });
   $("#dialogClose").addEventListener("click", () => $("#paperDialog").close());
   $("#paperDialog").addEventListener("close", () => history.replaceState(null, "", "#/"));
