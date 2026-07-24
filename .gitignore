@@ -1,0 +1,8 @@
+.DS_Store
+__MACOSX/
+*.pyc
+__pycache__/
+遥感图像分类论文合集.zip
+遥感图像分类论文合集.zip.part-*
+download_papers.py
+supplement_open_access.py

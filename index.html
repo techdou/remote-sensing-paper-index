@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="遥感图像分类论文索引：按分区、会议与期刊浏览，查看摘要和下载公开 PDF。">
+  <title>遥感图像分类论文索引 · 2023–2026</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2214%22 fill=%22%23173f35%22/><path d=%22M16 42c16 0 25-8 32-24-18 1-30 9-32 24Zm4 4c8-10 16-16 25-22%22 fill=%22none%22 stroke=%22%23d7f06d%22 stroke-width=%225%22 stroke-linecap=%22round%22/></svg>">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="hero">
+    <nav class="nav shell">
+      <a class="brand" href="#/">RS<span>Index</span></a>
+      <a class="source-link" href="./遥感图像分类论文合集/遥感图像分类23-26.xlsx" download>下载源 Excel</a>
+    </nav>
+    <div class="shell hero-content">
+      <p class="eyebrow">REMOTE SENSING RESEARCH LIBRARY</p>
+      <h1>遥感图像分类论文索引</h1>
+      <p class="lede">汇集 2023–2026 年 CCF-A、一区及高影响期刊与相关研究，支持分类浏览、全文搜索和公开 PDF 下载。</p>
+      <div class="stats" id="stats"></div>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="toolbar" aria-label="论文筛选">
+      <label class="search">
+        <span class="sr-only">搜索论文</span>
+        <input id="searchInput" type="search" placeholder="搜索标题、摘要、会议、机制或数据集…" autocomplete="off">
+      </label>
+      <div class="filters" id="sheetFilters" role="group" aria-label="按分区筛选"></div>
+      <div class="filter-row">
+        <select id="venueFilter" aria-label="按期刊或会议筛选">
+          <option value="">全部期刊 / 会议</option>
+        </select>
+        <select id="yearFilter" aria-label="按年份筛选">
+          <option value="">全部年份</option>
+        </select>
+        <label class="pdf-toggle">
+          <input id="pdfOnly" type="checkbox">
+          <span>仅显示可下载 PDF</span>
+        </label>
+      </div>
+    </section>
+
+    <section class="results-head">
+      <div>
+        <p class="eyebrow dark">CURATED PAPERS</p>
+        <h2 id="resultTitle">全部论文</h2>
+      </div>
+      <p id="resultCount" class="result-count"></p>
+    </section>
+
+    <section id="paperGrid" class="paper-grid" aria-live="polite"></section>
+    <p id="emptyState" class="empty" hidden>没有符合当前条件的论文，请调整筛选条件。</p>
+  </main>
+
+  <dialog id="paperDialog">
+    <button class="dialog-close" id="dialogClose" aria-label="关闭详情">×</button>
+    <article id="dialogContent"></article>
+  </dialog>
+
+  <footer>
+    <div class="shell footer-inner">
+      <p>数据来源：项目 Excel；PDF 仅收录可合法公开访问版本。</p>
+      <a href="./遥感图像分类论文合集/下载清单.csv" download>下载完整下载清单</a>
+    </div>
+  </footer>
+  <script src="./app.js" defer></script>
+</body>
+</html>
